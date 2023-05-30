@@ -32,12 +32,13 @@ public class BookRestController {
 		return service.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Book> getBook(@PathVariable long id) {
+	@GetMapping("/{id}/{descLenght}")
+	public ResponseEntity<Book> getBook(@PathVariable long id, @PathVariable int descLenght) {
 		
 		Optional<Book> op = service.findOne(id);
 		if(op.isPresent()) {
 			Book book = op.get();
+			book.setDescription(book.getDescription().substring(0, descLenght-1));
 			return new ResponseEntity<>(book, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
