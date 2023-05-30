@@ -32,6 +32,11 @@ public class BookRestController {
 		return service.findAll();
 	}
 
+	@GetMapping("/{title}")
+	public Collection<Book> getBooksByTitle(@PathVariable String title) {
+		return service.findByTitle(title);
+	}
+
 	@GetMapping("/{id}/{descLenght}")
 	public ResponseEntity<Book> getBook(@PathVariable long id, @PathVariable int descLenght) {
 		

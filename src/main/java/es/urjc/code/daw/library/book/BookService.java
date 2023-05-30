@@ -33,6 +33,10 @@ public class BookService {
 		return repository.findAll();
 	}
 
+	public List<Book> findByTitle(String title) {
+		return repository.findByTitle(title);
+	}
+
 	public Book save(Book book) {
 		Book newBook = repository.save(book);
 		notificationService.notify("Book Event: book with title="+newBook.getTitle()+" was created");
